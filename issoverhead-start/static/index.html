@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ISS Overhead Notifier</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIINfQByhQgA9p5p5Q5q5Zp4e6p0p1YlB7g="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="sky-panel" aria-label="ISS visibility dashboard">
+        <div class="orbit-map" id="map"></div>
+
+        <div class="status-strip">
+          <div>
+            <span class="label">Visibility</span>
+            <strong id="visibilityText">Checking...</strong>
+          </div>
+          <div>
+            <span class="label">ISS Position</span>
+            <strong id="issPosition">--</strong>
+          </div>
+          <div>
+            <span class="label">Last Check</span>
+            <strong id="checkedAt">--</strong>
+          </div>
+        </div>
+      </section>
+
+      <aside class="control-panel" aria-label="Location and notification controls">
+        <div>
+          <p class="eyebrow">ISS Overhead</p>
+          <h1>See when the station is close enough to look up.</h1>
+        </div>
+
+        <p class="message" id="message"></p>
+
+        <form id="locationForm" class="control-form">
+          <label>
+            Latitude
+            <input id="latitude" name="latitude" type="number" step="0.000001" value="22.694380" required />
+          </label>
+          <label>
+            Longitude
+            <input id="longitude" name="longitude" type="number" step="0.000001" value="88.454979" required />
+          </label>
+          <div class="button-row">
+            <button type="button" id="useLocationButton">Use my location</button>
+            <button type="submit">Check now</button>
+          </div>
+        </form>
+
+        <div class="details-grid">
+          <div>
+            <span class="label">Close overhead</span>
+            <strong id="nearUser">--</strong>
+          </div>
+          <div>
+            <span class="label">Dark outside</span>
+            <strong id="isDark">--</strong>
+          </div>
+          <div>
+            <span class="label">Sunrise</span>
+            <strong id="sunrise">--</strong>
+          </div>
+          <div>
+            <span class="label">Sunset</span>
+            <strong id="sunset">--</strong>
+          </div>
+        </div>
+
+        <form id="notifyForm" class="control-form">
+          <label>
+            Email alert
+            <input id="email" name="email" type="email" placeholder="you@example.com" />
+          </label>
+          <label>
+            SMS alert
+            <input id="phone" name="phone" type="tel" placeholder="+15551234567" />
+          </label>
+          <button type="submit">Send alert if visible</button>
+        </form>
+      </aside>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
