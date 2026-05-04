@@ -33,8 +33,14 @@ const issIcon = L.divIcon({
 });
 
 const map = L.map("map", {
+  minZoom: 2,
   worldCopyJump: true,
   zoomControl: true,
+  maxBounds: [
+    [-85, -180],
+    [85, 180],
+  ],
+  maxBoundsViscosity: 0.8,
 }).setView(defaultLocation, 4);
 
 setTimeout(() => {
@@ -42,7 +48,12 @@ setTimeout(() => {
 }, 100);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  minZoom: 2,
   maxZoom: 18,
+  bounds: [
+    [-85, -180],
+    [85, 180],
+  ],
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
